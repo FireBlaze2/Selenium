@@ -1,24 +1,20 @@
 import time
-from selenium import webdriver
-from openpyxl import Workbook
 from openpyxl import load_workbook
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.keys import Keys
 from pynput.keyboard import Key, Controller
-from seleniumbase import BaseCase
+from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.keys import Keys
 
-filepath = "C:/Users/Raghav/Desktop/contact_list.xlsx"
+filepath = "C:/Users/Raghav/OneDrive/Desktop/contact_list.xlsx"
 wb = load_workbook(filepath)
 sheet = wb.active
-frequency = 113710
+frequency = 7997
 # open chrome
 driver = webdriver.Chrome('C:\chromedriver\chromedriver')
 # open whatsapp homepage for scanning
 driver.get("https://web.whatsapp.com")
 # wait for some time(in sec)
-time.sleep(50)
+time.sleep(120)
 # open new window
 driver.execute_script("window.open('');")
 keyboard = Controller()
@@ -28,33 +24,23 @@ def shortcut():
     driver.find_element_by_xpath('//*[@title="Type a message"]').send_keys(Keys.SHIFT, Keys.ENTER)
 
 
+def newLine():
+    driver.find_element_by_xpath('//*[@title="Type a message"]').send_keys(Keys.SHIFT, Keys.ENTER)
+    driver.find_element_by_xpath('//*[@title="Type a message"]').send_keys(Keys.SHIFT, Keys.ENTER)
+
+
 i = 0
 l = 0
 while i <= frequency:
     while i <= frequency:
-        b3 = sheet.cell(row=i+1, column=2)
-        # url = "https://wa.me/+91"
-        # prints out the link
-        print("Sr. no."+(str(i+1)))
-        # print(url + str(b3.value))
+        b3 = sheet.cell(row=i + 1, column=1)
+        print("Sr. no." + (str(i + 1)))
         # Switch to the new window
         driver.switch_to.window(driver.window_handles[1])
         # open the link
         url = "https://web.whatsapp.com/send?phone=+91" + str(b3.value) + "&text=" + "&app_absent=0"
         driver.get(url)
-        # driver.get(url + str(b3.value))
-        # # wait for some time(in sec)
-        # time.sleep(2)
-        # # locating continue to chat
-        # continue_to_chat = driver.find_element_by_id("action-button")
-        # # continue_to_chat.click()
-        # continue_to_chat.click()
-        # time.sleep(1)
-        # # clicking on use whatsapp web
-        # use_whatsapp_web = driver.find_element_by_xpath("// a[contains(text(),'use WhatsApp Web')]")
-        # use_whatsapp_web.click()
-        # # waiting for the no. to load
-        time.sleep(15)
+        time.sleep(25)
         # attaching image
         try:
             driver.find_element_by_xpath('//div[@title = "Attach"]').click()
@@ -63,10 +49,9 @@ while i <= frequency:
             l += 1
             i += 1
             break
-        image_box = driver.find_element_by_xpath(
-            '//input[@accept="image/*,video/mp4,video/3gpp,video/quicktime"]')
+        image_box = driver.find_element_by_xpath('//input[@accept="image/*,video/mp4,video/3gpp,video/quicktime"]')
         # locating image
-        image_box.send_keys('C:/Users/Raghav/Desktop/Brochure.jpg')
+        image_box.send_keys('C:/Users/Raghav/OneDrive/Desktop/Brochure.jpg')
         time.sleep(2)
         # pressing send button
         driver.find_element_by_xpath('//span[@data-icon="send"]').click()
@@ -74,53 +59,57 @@ while i <= frequency:
         time.sleep(1)
         # typing message
         message = driver.find_element_by_xpath('//*[@title="Type a message"]')
-        message.send_keys("Modern Gurukul Academy @Banipark @Vidyadhar nagar")
+        message.send_keys("DEAR PARENTS -")
+        shortcut()
+        message.send_keys(" Unlock Your Child's Potential! ")
+        shortcut()
+        message.send_keys("Discover the Best Classes for Your Child!")
+        shortcut()
+        message.send_keys(" Professional Guidance")
+        shortcut()
+        message.send_keys(" Personal Attention")
+        shortcut()
+        message.send_keys(
+            "We offer specialized classes to nurture your child's talents and address areas for improvement. Our goal is to shape well-rounded individuals.")
         shortcut()
         shortcut()
-        message.send_keys("Serving in Banipark since 23 years")
+        message.send_keys(" Creative Arts ")
         shortcut()
+        message.send_keys("(Sketching, Drawing,Painting)")
         shortcut()
-        message.send_keys("*Brings to you a one stop centre where your child can get 360° personality development*")
+        message.send_keys(" Academic Mastery")
         shortcut()
-        message.send_keys("*Join -*")
+        message.send_keys("(Tuitions,Phonic reading, Creative writing )")
         shortcut()
-        message.send_keys("*• Tuitions (NUR. TO VIII)*")
+        message.send_keys(" Basketball")
         shortcut()
-        message.send_keys("*• UCMAS*")
+        message.send_keys(" Musical Instruments")
         shortcut()
-        message.send_keys("*• Dance*")
+        message.send_keys("(Guitar,Synthesizer,Dholak,Tabla)")
         shortcut()
-        message.send_keys("*• Drawing*")
+        message.send_keys(" Dance")
         shortcut()
-        message.send_keys("*• Musical Instruments*")
+        message.send_keys("(Western, folk,Bollywood)")
         shortcut()
-        message.send_keys("*• Art and Craft*")
+        message.send_keys(" Skating")
         shortcut()
-        message.send_keys("*• Handwriting improvement*")
+        message.send_keys(" UCMAS")
         shortcut()
-        message.send_keys("*• Calligraphy*")
+        message.send_keys(" Handwriting Improvement")
         shortcut()
-        message.send_keys("*• Spoken English*")
+        message.send_keys(" Calligraphy")
         shortcut()
-        message.send_keys("*• Skating (Banipark)*")
-        shortcut()
-        shortcut()
-        message.send_keys("Let your child learn and explore the world of creativity all under one roof..! All the "
-                          "classes will help groom your childs school and co-curricular activities together..")
-        shortcut()
-        shortcut()
-        message.send_keys("We have multiple discount packages available starting from a week to monthly basis.")
-        shortcut()
-        shortcut()
-        message.send_keys("Hurry join now...don't waste even a day!!!")
+        message.send_keys(" Chess")
         shortcut()
         shortcut()
         message.send_keys("BANIPARK: D-92(Z) MeeraMarg Banipark, Jaipur")
         shortcut()
         shortcut()
-        message.send_keys("Vidhyadhar Nagar: 144, Opp. MGPS, Shankar Colony Mall Road, Vidhyadhar Nagar, Jaipur")
+        message.send_keys(
+            "Vidhyadhar Nagar: 144, Opp. MGPS, Shankar Colony Mall Road, Vidhyadhar Nagar, Jaipur, Rajasthan 302039")
         shortcut()
         message.send_keys("https://bit.ly/3Q62Emg")
+        shortcut()
         shortcut()
         message.send_keys("Find us on Instagram -> www.instagram.com/moderngurukulacademy")
         shortcut()
@@ -130,7 +119,7 @@ while i <= frequency:
         # press enter
         keyboard.press(Key.enter)
         keyboard.release(Key.enter)
-        print("Sent Messages = " + str((i+1)-l))
+        print("Sent Messages = " + str((i + 1) - l))
         i += 1
         # wait for some time
         time.sleep(2)
@@ -139,4 +128,3 @@ while i <= frequency:
 driver.quit()
 print("You have circulated through all the numbers.")
 print("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
-
